@@ -4,7 +4,7 @@ const Mensajes = require('../api/mensajes')
 
 router.get('/leer', async (req, res) => {
     try {
-        let result = await Mensajes.devolver();
+        let result = await Mensajes.buscar();
         return res.json(result);
     } catch (error) {
         return res.status(500).send({ error: error.message });
