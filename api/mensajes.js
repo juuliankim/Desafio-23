@@ -15,7 +15,7 @@ class Mensajes {
 
     async buscarTodo() {
         try {
-            let mensajes = await this.devolver()
+            let mensajes = await this.buscar()
             let mensajesConId = { 
                 id: 'mensajes', 
                 mensajes : mensajes.map( mensaje => ({...mensaje._doc}))

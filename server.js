@@ -6,6 +6,7 @@ const io = require('socket.io')(server)
 const normalize = require('normalizr').normalize
 const schema = require('normalizr').schema
 const productos = require('./api/productos')
+const Mensajes = require('./api/mensajes')
 
 require('./database/connection')
 
@@ -42,7 +43,7 @@ io.on('connection', async socket => {
 
         await Mensajes.guardar(data)
 
-        let mensajesDB = await Mensajes.getAll()     
+        let mensajesDB = await Mensajes.buscarTodo()     
 
         const autorSchema = new schema.Entity('autor', {}, { idAttribute: 'nombre' });
 
@@ -64,7 +65,6 @@ io.on('connection', async socket => {
             
         io.sockets.emit("messages", mensajesNormalizados)
     })
-
 })
 
 const PORT = 8080
